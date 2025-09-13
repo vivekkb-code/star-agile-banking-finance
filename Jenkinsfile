@@ -1,13 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Build Maven') {
+        stage('Clone Repo') {
             steps {
                 git url: 'https://github.com/vivekkb-code/star-agile-banking-finance.git', branch: "master"
-                sh 'mvn clean install'
             }
         }
-
+        stage('Build Maven') {
+      steps {
+        sh 'mvn clean install'
+      }
+    }
         stage('Build docker image') {
             steps {
                 script {
